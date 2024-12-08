@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de médicos</title>
+    <style>
+    :root {
+        --coloroddrow: #D3D3D3
+    }
+
+        #tabela-doutores {
+            width: 100%;
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        th,tb {
+            text-align: start;
+            background-color: var(--coloroddrow);
+        }
+
+        tr:nth-child(even) {
+            background-color: whitesmoke;
+        }
+
+        tr:nth-child(odd) {
+            background-color: var(--coloroddrow);
+        }
+    </style>
+</head>
+<body>
+    <h2>Pagina de Cadastro dos doutores</h2>
+    <div id="input_wrapper">
+        <label for="nome">Nome<input id="nome" type="text"></label>
+        <label for="especialidade">Especialidade<input id="especialidade" type="text"></label>
+        <label for="CRM">CRM<input id="CRM" type="number"></label>
+    </div>
+    <button onclick="adicionar_info()">Inserir</button>
+    <table id="tabela-doutores">
+        <tbody>
+            <tr>
+                <th>Nome</th>
+                <th>Especialidade</th>
+                <th>CRM</th>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <script>
+        let doutores = []
+
+        function adicionar_info(){
+            let info_medico = [document.getElementById('nome').value,document.getElementById('especialidade').value,document.getElementById('CRM').value]
+            let object = {nome:info_medico[0],especialidade:info_medico[1],crm:info_medico[2]}
+            let tr = document.createElement('tr')
+            tr.innerHTML = `
+            <td>${info_medico[0]}</td>
+            <td>${info_medico[1]}</td>
+            <td>${info_medico[2]}</td>
+            `
+
+            if(info_medico[0]==''||info_medico[1]==''||info_medico[2]=='') {
+                console.log("valor nulo não aplicado")
+            } else {
+                doutores.push(object)
+                document.getElementById("tabela-doutores").getElementsByTagName('tbody')[0].append(tr)
+            }
+        }
+    </script>
+</body>
+</html>
